@@ -14,11 +14,15 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MenuBarComponent } from './shared/menu-bar/menu-bar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginRegisComponent } from './pages/login-regis/login-regis.component';
+import { SpotlightComponent } from './pages/spotlight/spotlight.component';
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
-    HomeComponent
+    HomeComponent,
+    LoginRegisComponent,
+    SpotlightComponent
   ],
   imports: [
     BrowserModule,

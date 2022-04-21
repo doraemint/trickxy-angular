@@ -1,0 +1,58 @@
+.bg {
+    background-color: #fcecec;
+}
+
+.spotlight-topic {
+    .badge {
+        font-size: 18px;
+        &.text-pink {
+            color: #ea958e;
+        }
+    }
+}
+
+// desktop
+@media only screen and (min-width: 850px) {
+    .spotlight-topic {
+        padding: 60px 100px;
+
+        .hashtags-topic {
+            padding-left: 15px;
+            font-weight: bold;
+        }
+        .bi {
+            &.bi-hash {
+                color: black;
+                font-size: 40px;
+            }
+        }
+        .detail-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 30px;
+        }
+    }
+}
+
+// mobile
+@media only screen and (max-device-width: 849px) {
+    .spotlight-topic {
+        padding: 20px 30px;
+        .hashtags-topic {
+            padding-left: 10px;
+            font-weight: bold;
+            font-size: 10px;
+        }
+        .bi {
+            &.bi-hash {
+                color: black;
+                font-size: 20px;
+            }
+        }
+        .detail-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+        }
+    }
+}

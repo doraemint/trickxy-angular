@@ -1,0 +1,77 @@
+<div class="bg">
+    <!-- card salogan -->
+    <!-- <div class="card card-detail-us card-large-no-border">
+        <div class="detail text-center">
+            <br>
+            <label class="card-title">
+                A community for people who want tips and tricks for beauty inspirations
+            </label>
+            <br><br>
+            <label class="card-text">
+                Trickxy Team
+            </label>
+            <br>
+        </div>
+    </div> -->
+
+    <!-- banner -->
+    <div>
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../../../assets/slide-image1.png" alt="Los Angeles" class="d-block" style="width:100%">
+                    <!-- <div class="carousel-caption">
+                        <h3>Los Angeles</h3>
+                        <p>We had such a great time in LA!</p>
+                    </div> -->
+                </div>
+                <div class="carousel-item">
+                    <img src="../../../assets/slide-image2.png" alt="Chicago" class="d-block" style="width:100%">
+                    <!-- <div class="carousel-caption">
+                        <h3>Chicago</h3>
+                        <p>Thank you, Chicago!</p>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Spotlight topic -->
+    <div class="spotlight-topic">
+        <span class="badge rounded-pill bg-light text-pink">Spotlight</span>
+        <br><br>
+        <!-- Hashtag -->
+        <div *ngFor="let hashtag of topicHashtags">
+            <h6>
+                <span class="badge rounded-pill bg-light text-black">
+                    <i class="bi bi-hash"></i>
+                </span>
+                <span class="hashtags-topic">{{hashtag.topic}}</span>
+            </h6>
+            <div class="row" >
+                <div class="col-4" *ngFor="let detail of hashtag.info">
+                    <img class="detail-img" src="{{detail.img}}">
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

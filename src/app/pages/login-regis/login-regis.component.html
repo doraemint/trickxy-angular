@@ -1,0 +1,38 @@
+<div>
+    <div class="text-center">
+        <ng-container *ngIf="isLogin; else headerSignUp">
+            <h1>Log in</h1>
+        </ng-container>
+        <ng-template #headerSignUp>
+            <h1>Sign up</h1>
+        </ng-template>
+    </div>
+    <form [formGroup]='form' (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-group pt-4 mx-auto" style="width: 400;">
+            <div class="pb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                    formControlName="email" required>
+            </div>
+            <div class="pb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password" required>
+            </div>
+            <div class="text-center">
+                <p style="color: red">{{errorMessage}}</p>
+                <ng-container *ngIf="isLogin; else goToSignUp">
+                    <button type="submit" class="btn btn-primary mb-3">Log in</button>
+                    <br>
+                    <span>New to this site? </span>
+                    <span class="" (click)="signUpStatus()"> Sign Up</span>
+                </ng-container>
+                <ng-template #goToSignUp>
+                    <button type="submit" class="btn btn-primary mb-3">Sign up</button>
+                    <br>
+                    <span>Already a member? </span>
+                    <span class="" (click)="loginStatus()"> Login</span>
+                </ng-template>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+* {
+    font-family: "K2D", sans-serif;
+    font-weight: 200;
+}
+.thai {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+}
+.eng {
+    font-family: "PT Sans", sans-serif;
+}
+
+.card {
+    &.card-large-no-border {
+        border: 0px;
+        border-radius: 0px;
+    }
+}

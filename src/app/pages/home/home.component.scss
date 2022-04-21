@@ -1,0 +1,136 @@
+.main-card {
+    &.card {
+        background-color: #ec8f8f;
+    }
+}
+
+.card-about-trickxy {
+    background-color: #ec6b6b;
+}
+
+.card-contact {
+    background-color: #ec6b6b;
+    .bi {
+        color: white;
+    }
+}
+
+// desktop
+@media only screen and (min-width: 850px) {
+    .main-card {
+        &.card {
+            height: 500px;
+        }
+        .card-img {
+            width: 300px;
+            height: 300px;
+        }
+        .card-title {
+            font-size: 100px;
+        }
+        .card-text {
+            font-size: 20px;
+        }
+    }
+
+    .card-about-us {
+        background-color: #fcecec;
+        // height: 300px;
+        .detail {
+            line-height: 30px;
+            padding: 60px 250px;
+            .card-text {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .card-about-trickxy {
+        .detail {
+            line-height: 30px;
+            padding: 60px 250px;
+            .card-text {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .card-contact {
+        height: 300px;
+        .detail {
+            .card-title {
+                font-size: 50px;
+            }
+            .card-text {
+                font-size: 15px;
+            }
+            .icon-space{
+                padding-right: 30px;
+            }
+        }
+    }
+}
+
+// mobile
+@media only screen and (max-device-width: 849px) {
+    .main-card {
+        &.card {
+            height: 250px;
+        }
+        .card-img {
+            width: 150px;
+            height: 150px;
+        }
+        .card-title {
+            font-size: 40px;
+        }
+        .card-text {
+            font-size: 10px;
+        }
+    }
+    .card-about-us {
+        background-color: #fcecec;
+        // height: 200px;
+        .detail {
+            line-height: 15px;
+            padding: 25px;
+            .card-title {
+                font-size: 10px;
+            }
+            .card-text {
+                font-size: 7px;
+            }
+        }
+    }
+
+    .card-about-trickxy {
+        // height: 200px;
+        .detail {
+            line-height: 15px;
+            padding: 25px;
+            .card-title {
+                font-size: 10px;
+            }
+            .card-text {
+                font-size: 7px;
+            }
+        }
+    }
+
+    .card-contact {
+        // height: 200px;
+        .detail {
+            .card-title {
+                font-size: 30px;
+            }
+            .card-text {
+                font-size: 10px;
+            }
+            .icon-space{
+                padding-right: 30px;
+            }
+        }
+    }
+}
+
+

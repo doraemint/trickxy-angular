@@ -12,6 +12,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { MenuBarComponent } from './shared/menu-bar/menu-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginRegisComponent } from './pages/login-regis/login-regis.component';
@@ -34,7 +36,7 @@ import { SpotlightComponent } from './pages/spotlight/spotlight.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]

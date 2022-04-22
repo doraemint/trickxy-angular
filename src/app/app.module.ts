@@ -18,13 +18,17 @@ import { MenuBarComponent } from './shared/menu-bar/menu-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginRegisComponent } from './pages/login-regis/login-regis.component';
 import { SpotlightComponent } from './pages/spotlight/spotlight.component';
+import { BlogComponent } from './pages/blog/blog.component';
+import { ShopComponent } from './pages/shop/shop.component';
 @NgModule({
   declarations: [
     AppComponent,
     MenuBarComponent,
     HomeComponent,
     LoginRegisComponent,
-    SpotlightComponent
+    SpotlightComponent,
+    BlogComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

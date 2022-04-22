@@ -37,10 +37,7 @@ img {
     flex-direction: column;
     width: clamp(15rem, calc(15rem + 1vw), 17rem);
     overflow: hidden;
-    box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.1);
-    border-radius: 1em;
-    background: #ece9e6;
-    background: linear-gradient(to right, #ffffff, #ece9e6);
+    border: none;
 }
 
 .card__body {

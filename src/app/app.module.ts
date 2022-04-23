@@ -20,6 +20,7 @@ import { LoginRegisComponent } from './pages/login-regis/login-regis.component';
 import { SpotlightComponent } from './pages/spotlight/spotlight.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { CartComponent } from './pages/cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { ShopComponent } from './pages/shop/shop.component';
     LoginRegisComponent,
     SpotlightComponent,
     BlogComponent,
-    ShopComponent
+    ShopComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

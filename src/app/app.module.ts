@@ -21,6 +21,7 @@ import { SpotlightComponent } from './pages/spotlight/spotlight.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { CartComponent } from './pages/cart/cart.component';
     SpotlightComponent,
     BlogComponent,
     ShopComponent,
-    CartComponent
+    CartComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

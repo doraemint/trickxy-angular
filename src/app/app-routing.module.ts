@@ -4,6 +4,7 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginRegisComponent } from './pages/login-regis/login-regis.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { SpotlightComponent } from './pages/spotlight/spotlight.component';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'my-profile', component: MyProfileComponent },
   { path: '**', redirectTo: '/home' }
 ];
 

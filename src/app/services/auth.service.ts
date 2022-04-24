@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user';
@@ -9,11 +10,13 @@ import { IUser } from '../models/user';
 })
 export class AuthService {
 
-  // usersRef: AngularFireList<any>;      // Reference to users list, Its an Observable
-  // userRef: AngularFireObject<any>;     // Reference to user object, Its an Observable too
+  usersRef: AngularFireList<any>;      // Reference to users list, Its an Observable
+  userRef: AngularFireObject<any>;     // Reference to user object, Its an Observable too
   userData: any;
+  private basePath = '/users';
   constructor(
     public afs: AngularFirestore,
+    private db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     public router: Router,
   ) {
@@ -35,8 +38,14 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password);
   }
 
+  private saveUserData(newUser: IUser): void {
+    this.db.list(this.basePath).push(newUser);
+  }
+
   register(newUser: IUser) {
-    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password);
+    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password).then(() =>{
+      this.saveUserData(newUser);
+    });
   }
 
   logout() {

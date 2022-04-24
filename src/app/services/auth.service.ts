@@ -13,6 +13,7 @@ export class AuthService {
   usersRef: AngularFireList<any>;      // Reference to users list, Its an Observable
   userRef: AngularFireObject<any>;     // Reference to user object, Its an Observable too
   userData: any;
+  isLogin: boolean = false;
   private basePath = '/users';
   constructor(
     public afs: AngularFirestore,
@@ -24,12 +25,18 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
+        this.isLogin = true;
+        localStorage.setItem('isLogin', JSON.stringify(this.isLogin));
         const getUser = JSON.parse(localStorage.getItem('user') || '{}');
-        return getUser;
+        const isLogin = JSON.parse(localStorage.getItem('isLogin') || '{}');
+        return { getUser, isLogin };
       } else {
         localStorage.setItem('user', '{}');
         const getUser = JSON.parse(localStorage.getItem('user') || '{}');
-        return getUser;
+        this.isLogin = false;
+        localStorage.setItem('isLogin', JSON.stringify(this.isLogin));
+        const isLogin = JSON.parse(localStorage.getItem('isLogin') || '{}');
+        return { getUser, isLogin };
       }
     });
   }
@@ -46,8 +53,8 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password,).then(() => {
       this.afAuth.currentUser.then((user) => {
         user!.updateProfile({
-          displayName: newUser.displayName,
-          photoURL: 'gs://trickxy-official.appspot.com/uploads/user.png'
+          displayName: '@' + newUser.displayName,
+          photoURL: 'https://firebasestorage.googleapis.com/v0/b/trickxy-official.appspot.com/o/uploads%2Fuser.png?alt=media&token=07eb84b1-6992-4797-b8dc-3fa81fbe606e'
         });
       });
       this.saveUserData(newUser);
@@ -57,7 +64,10 @@ export class AuthService {
   logout() {
     return this.afAuth.signOut().then(() => {
       localStorage.clear();
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
     });
   }
 }

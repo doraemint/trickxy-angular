@@ -16,8 +16,8 @@ export class LoginRegisComponent implements OnInit {
   data: IUser = {
     email: '',
     password: '',
-    displayName:'',
-    photoURL:''
+    displayName: '',
+    photoURL: ''
   };
   errorMessage: string
 
@@ -31,8 +31,8 @@ export class LoginRegisComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required,],
-      displayName: ['', Validators.required,],
-      photoURL:['']
+      displayName: ['',],
+      photoURL: ['']
     });
   }
 
@@ -56,16 +56,22 @@ export class LoginRegisComponent implements OnInit {
       if (this.isLogin === true) {
         this.authService
           .login(this.data)
-          .then(() => this.router.navigate(['/']))
-          .catch((e:any) => this.errorMessage = e.message);
+          .then(() => {
+            this.router.navigate(['/']);
+            setTimeout(() => {
+              window.location.reload(), 1000
+            })
+
+          })
+          .catch((e: any) => this.errorMessage = e.message);
       } else {
         this.authService
           .register(this.data)
-          .then((res : any) => {
-            console.log('register',res);
+          .then((res: any) => {
+            console.log('register', res);
             window.location.reload();
           })
-          .catch((e :any) => this.errorMessage = e.message);
+          .catch((e: any) => this.errorMessage = e.message);
       }
     }
 
@@ -79,6 +85,8 @@ export class LoginRegisComponent implements OnInit {
   signUpStatus() {
     this.isLogin = false;
     this.form.reset();
+    this.form.get('displayName')?.setValidators([Validators.required]);
+    this.form.get('displayName')?.updateValueAndValidity();
     this.errorMessage = '';
   }
 

@@ -54,28 +54,31 @@
             </span> -->
 
             <!-- Login -->
-            <span>
+
+            <span *ngIf="!isLogin; else loginAlready">
                 <a class="nav-item" href="/login-register">Login</a>
             </span>
-            <!-- Avatar -->
-            <span class="dropdown">
-                <a class="dropdown-toggle" href="#" id="navbarDropdownMenuAvatar" role="button"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
-                        alt="Black and White Portrait of a Man" loading="lazy" />
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                    <li>
-                        <a class="dropdown-item" href="/my-profile">My profile</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                </ul>
-            </span>
+            <ng-template #loginAlready>
+                <!-- Avatar -->
+                <span class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="navbarDropdownMenuAvatar" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{myProfileData.photoURL}}" class="rounded-circle" height="25"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="/my-profile">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" (click)="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </span>
+            </ng-template>
         </span>
     </div>
 </div>

@@ -59,7 +59,7 @@ export class LoginRegisComponent implements OnInit {
           .then(() => {
             this.router.navigate(['/']);
             setTimeout(() => {
-              window.location.reload(), 1000
+              window.location.reload(), 2000
             })
 
           })

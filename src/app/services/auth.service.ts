@@ -67,7 +67,7 @@ export class AuthService {
       this.router.navigate(['/']);
       setTimeout(() => {
         window.location.reload();
-      }, 1000)
+      }, 2000)
     });
   }
 }

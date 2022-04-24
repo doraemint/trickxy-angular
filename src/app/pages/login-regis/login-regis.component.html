@@ -9,6 +9,11 @@
     </div>
     <form [formGroup]='form' (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group pt-4 mx-auto" style="width: 400;">
+            <div class="pb-3" *ngIf="!isLogin">
+                <label for="displayName" class="form-label">Username</label>
+                <input type="text" class="form-control" id="displayName" placeholder="your name to display"
+                    formControlName="displayName" required>
+            </div>
             <div class="pb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="email" placeholder="name@example.com"

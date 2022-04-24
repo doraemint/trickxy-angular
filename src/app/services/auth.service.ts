@@ -43,7 +43,13 @@ export class AuthService {
   }
 
   register(newUser: IUser) {
-    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password).then(() =>{
+    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password,).then(() => {
+      this.afAuth.currentUser.then((user) => {
+        user!.updateProfile({
+          displayName: newUser.displayName,
+          photoURL: 'gs://trickxy-official.appspot.com/uploads/user.png'
+        });
+      });
       this.saveUserData(newUser);
     });
   }

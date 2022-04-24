@@ -16,6 +16,8 @@ export class LoginRegisComponent implements OnInit {
   data: IUser = {
     email: '',
     password: '',
+    displayName:'',
+    photoURL:''
   };
   errorMessage: string
 
@@ -29,6 +31,8 @@ export class LoginRegisComponent implements OnInit {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required,],
+      displayName: ['', Validators.required,],
+      photoURL:['']
     });
   }
 

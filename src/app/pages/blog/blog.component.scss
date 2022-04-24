@@ -1,0 +1,39 @@
+.bg {
+    background-color: #fcecec;
+}
+
+.card{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-radius: 15px;
+}
+
+// detail user
+.user {
+    // display: flex;
+    // gap: 0.5rem;
+}
+
+.user__image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.item-review{
+    .size-pic{
+        width: 120px;
+        height: 120px;
+         border-radius: 50%;
+    }
+}
+// desktop
+@media only screen and (min-width: 850px) {
+    
+}
+
+// mobile
+@media only screen and (max-device-width: 849px) {
+
+}

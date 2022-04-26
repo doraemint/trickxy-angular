@@ -22,6 +22,7 @@ import { BlogComponent } from './pages/blog/blog.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { CreateEditBlogComponent } from './pages/blog/create-edit/create-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
     BlogComponent,
     ShopComponent,
     CartComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    CreateEditBlogComponent
   ],
   imports: [
     BrowserModule,

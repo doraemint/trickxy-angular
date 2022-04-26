@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IBlog } from 'src/app/models/blog';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-blog',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit {
-
-  constructor() { }
+  allBlog :IBlog[] = [];
+  constructor(
+    private router: Router,
+    private blogService: BlogService
+  ) { }
 
   ngOnInit(): void {
+    this.getAllBlog();
   }
 
+  getAllBlog() {
+  this.blogService.getAllBlog().subscribe((data)=>{
+    this.allBlog = data;
+    console.log(this.allBlog)
+  });
+   //
+  }
+  goToCreatePost() {
+    this.router.navigate(['/create-edit-blog'])
+  }
 }

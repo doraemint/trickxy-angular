@@ -48,10 +48,10 @@ export class LoginRegisComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('form', this.form);
     this.data = {
       ...this.form.value
     }
+    // login mode
     if (this.form.valid) {
       if (this.isLogin === true) {
         this.authService
@@ -64,12 +64,17 @@ export class LoginRegisComponent implements OnInit {
 
           })
           .catch((e: any) => this.errorMessage = e.message);
-      } else {
+      }
+      // register mode
+      else {
         this.authService
           .register(this.data)
           .then((res: any) => {
             console.log('register', res);
-            window.location.reload();
+            this.router.navigate(['/']);
+            setTimeout(() => {
+              window.location.reload(), 2000
+            })
           })
           .catch((e: any) => this.errorMessage = e.message);
       }

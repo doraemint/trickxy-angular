@@ -10,23 +10,18 @@ import { FileUpload } from '../models/file-upload';
 export class FileUploadService {
   private basePath = '/uploads';
   public urlImg = '';
-  i = 0
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
 
   pushFileToStorage(fileUpload: FileUpload) {
-    Object.freeze(fileUpload);
-    // = 'img ' + this.i++
-    const fileUploadCopy = { ...fileUpload };
-    fileUploadCopy.name = 'img ' + (this.i++).toString();
-    const filePath = `${this.basePath}/${fileUploadCopy.name}`;
+    const filePath = `${this.basePath}/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, fileUploadCopy.file);
+    const uploadTask = this.storage.upload(filePath, fileUpload.file);
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(downloadURL => {
           console.log('downloadURL',downloadURL)
-          fileUploadCopy.url = downloadURL;
-          fileUploadCopy.name = fileUpload.file.name;
+          fileUpload.url = downloadURL;
+          fileUpload.name = fileUpload.file.name;
           this.urlImg = downloadURL;
           this.getImgUrlFromStorage();
         });

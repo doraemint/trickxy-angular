@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IShop } from 'src/app/models/shop';
+import { ShopService } from 'src/app/services/shop.service';
 
 @Component({
   selector: 'app-shop',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,private shopService: ShopService) { }
 
-  ngOnInit(): void {
+  allProduct : IShop[] = [];
+  ngOnInit() {
+    this.getAllBlog();
   }
 
+  getAllBlog() {
+    this.shopService.getAllProduct().subscribe((data) => {
+      this.allProduct = data;
+      console.log('getAllProduct',this.allProduct)
+    });
+    //
+  }
+  goToAddShop() {
+    this.router.navigate(['/create-edit-shop'])
+  }
 }

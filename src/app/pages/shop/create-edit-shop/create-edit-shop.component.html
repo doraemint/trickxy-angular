@@ -1,0 +1,43 @@
+<!-- <div class="bg">
+    <div class="py-3">
+        <input>
+    </div>
+</div> -->
+<div class="px-3 pb-5">
+    <div class="container contact-form shadow">
+        <form [formGroup]='shopForm' (ngSubmit)="submit()" method="post">
+            <br>
+            <h3 class="text-color-primary">Add Product</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="txtName" class="form-control" placeholder="Name of product *" formControlName="nameProduct" />
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" name="txtName" class="form-control" placeholder="Price *" formControlName="price" />
+                    </div>
+                    <br>
+                </div>
+                <!-- upload img -->
+                <div class="col-md-6">
+                    <label>
+                        <input type="file" accept="image/*" class="text-nowrap text-truncate"
+                            (change)="selectFile($event)" />
+                    </label>
+        
+                    <!-- preview img -->
+                    <div *ngIf="filePath && filePath !== ''" class="py-2">
+                        <img [src]="filePath" alt="Sorry" class="preview-size-img">
+                    </div>
+                </div>
+
+                <!-- submit btn -->
+                <div class="text-center py-3">
+                    <input type="submit" name="btnSubmit" [disabled]="uploading" class="btnContact btn-primary" value="Submit"  />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

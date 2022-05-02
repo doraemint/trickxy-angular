@@ -23,6 +23,7 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { CreateEditBlogComponent } from './pages/blog/create-edit/create-edit.component';
+import { CreateEditShopComponent } from './pages/shop/create-edit-shop/create-edit-shop.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { CreateEditBlogComponent } from './pages/blog/create-edit/create-edit.co
     ShopComponent,
     CartComponent,
     MyProfileComponent,
-    CreateEditBlogComponent
+    CreateEditBlogComponent,
+    CreateEditShopComponent
   ],
   imports: [
     BrowserModule,

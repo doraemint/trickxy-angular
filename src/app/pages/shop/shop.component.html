@@ -1,71 +1,26 @@
 <div class="container">
     <div class="pl-3">
-        <div class="row row-cols-2 row-cols-sm-5 g-4 ">
-            <div class="col">
-                <div class="card">
-                    <div class="card__header">
-                        <img src="../../../assets/Puffin.jpg" alt="card__image" class="card__image" width="250"
-                            height="200">
-                    </div>
-                    <div class="card__body">
-                        <span class="tag tag-blue">Hot</span>
-                        <h5>Puffin Mini Heart Power Acne Patch</h5>
-                        <p>฿ 149.00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card__header">
-                        <img src="../../../assets/Puffin.jpg" alt="card__image" class="card__image" width="250"
-                            height="200">
-                    </div>
-                    <div class="card__body">
-                        <span class="tag tag-brown">Best Seller</span>
-                        <h5>Puffin Mini Heart Power Acne Patch</h5>
-                        <p>฿ 149.00</p>
+        <!-- Create post btn -->
+        <div class="text-end">
+            <button class="btn btn-primary mb-3 mx-3" (click)="goToAddShop()">Add shop</button>
+        </div>
+        <div>
+            <div class="row row-cols-2 row-cols-sm-5 g-4 ">
+                <div class="col" *ngFor="let product of allProduct">
+                    <div class="card">
+                        <div class="card__header">
+                            <img src="{{product.fileUpload}}" alt="card__image" class="card__image" width="250"
+                                height="200">
+                        </div>
+                        <div class="card__body">
+                            <span class="tag tag-blue">Hot</span>
+                            <h5>{{product.nameProduct}}</h5>
+                            <p>฿ {{product.price}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card__header">
-                        <img src="../../../assets/Puffin.jpg" alt="card__image" class="card__image" width="250"
-                            height="200">
-                    </div>
-                    <div class="card__body">
-                        <span class="tag tag-red">Must Have</span>
-                        <h5>Puffin Mini Heart Power Acne Patch</h5>
-                        <p>฿ 149.00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card__header">
-                        <img src="../../../assets/Puffin.jpg" alt="card__image" class="card__image" width="250"
-                            height="200">
-                    </div>
-                    <div class="card__body">
-                        <span class="tag tag-blue">Hot</span>
-                        <h5>Puffin Mini Heart Power Acne Patch</h5>
-                        <p>฿ 149.00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="card__header">
-                        <img src="../../../assets/Puffin.jpg" alt="card__image" class="card__image" width="250"
-                            height="200">
-                    </div>
-                    <div class="card__body">
-                        <span class="tag tag-blue">Hot</span>
-                        <h5>Puffin Mini Heart Power Acne Patch</h5>
-                        <p>฿ 149.00</p>
-                    </div>
-                </div>
-            </div>
+
 
         </div>
     </div>

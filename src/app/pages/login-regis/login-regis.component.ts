@@ -32,7 +32,8 @@ export class LoginRegisComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required,],
       displayName: ['',],
-      photoURL: ['']
+      photoURL: [''],
+      role:['']
     });
   }
 
@@ -67,14 +68,15 @@ export class LoginRegisComponent implements OnInit {
       }
       // register mode
       else {
+        this.data.role = 'user';
         this.authService
           .register(this.data)
           .then((res: any) => {
             console.log('register', res);
             this.router.navigate(['/']);
-            setTimeout(() => {
-              window.location.reload(), 2000
-            })
+            // setTimeout(() => {
+            //   window.location.reload(), 2000
+            // })
           })
           .catch((e: any) => this.errorMessage = e.message);
       }

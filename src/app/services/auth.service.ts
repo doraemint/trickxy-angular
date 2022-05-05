@@ -14,6 +14,7 @@ export class AuthService {
   userRef: AngularFireObject<any>;     // Reference to user object, Its an Observable too
   userData: any;
   isLogin: boolean = false;
+  userUid: any = null;
   private basePath = '/users';
   constructor(
     public afs: AngularFirestore,
@@ -29,7 +30,9 @@ export class AuthService {
   }
 
   private saveUserData(newUser: IUser): void {
-    this.db.list(this.basePath).push(newUser);
+    this.afAuth.authState.subscribe(user => {
+      this.db.object('users/' + user!.uid).update(newUser);
+    });
   }
 
   register(newUser: IUser) {
@@ -64,7 +67,7 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(this.userData));
         this.isLogin = true;
         localStorage.setItem('isLogin', JSON.stringify(this.isLogin));
-        return
+        this.userUid = user.uid;
       } else {
         localStorage.setItem('user', '{}');
         this.isLogin = false;
@@ -78,5 +81,10 @@ export class AuthService {
     const getUser = JSON.parse(localStorage.getItem('user') || '{}');
     const isLogin = JSON.parse(localStorage.getItem('isLogin') || '{}');
     return { getUser, isLogin };
+  }
+  
+  get currentUid() {
+    console.log('get this.userUid', this.userUid)
+    return this.userUid;
   }
 }

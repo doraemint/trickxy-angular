@@ -20,7 +20,7 @@ export class CreateEditShopComponent implements OnInit {
 
   filePath: string;
   data: IShop = {
-    key: '',
+    id: '',
     nameProduct: '',
     price: 0,
     fileUpload: '',

@@ -10,7 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 export class MenuBarComponent implements OnInit {
   myProfileData: any;
   isLogin: boolean;
-  constructor(private userService: UserService, private authService: AuthService) { }
+  isLoginStatus: any;
+  constructor(private userService: UserService, private authService: AuthService) {
+    this.isLoginStatus = this.authService.isLoginStatus;
+   }
 
   ngOnInit(): void {
     this.getMyProfileDetail();
@@ -19,7 +22,6 @@ export class MenuBarComponent implements OnInit {
   getMyProfileDetail() {
     this.myProfileData = this.userService.getMyProfile();
     this.isLogin = JSON.parse(localStorage.getItem('isLogin') || '{}');
-    console.log('menu page',this.isLogin)
   }
 
   logout() {

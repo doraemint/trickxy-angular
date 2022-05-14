@@ -55,16 +55,14 @@
 
             <!-- Login -->
 
-            <span *ngIf="!isLogin; else loginAlready">
-                <a class="nav-item" href="/login-register">Login</a>
-            </span>
-            <ng-template #loginAlready>
+
+            <span *ngIf="(isLoginStatus | async) || isLogin ; else noLogin">
                 <!-- Avatar -->
                 <span class="dropdown">
                     <a class="dropdown-toggle" href="#" id="navbarDropdownMenuAvatar" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{myProfileData.photoURL}}" class="rounded-circle" height="25"
-                            alt="Black and White Portrait of a Man" loading="lazy" />
+                            alt="menu" />
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                         <li>
@@ -78,6 +76,9 @@
                         </li>
                     </ul>
                 </span>
+            </span>
+            <ng-template #noLogin>
+                <a class="nav-item" href="/login-register">Login</a>
             </ng-template>
         </span>
     </div>

@@ -24,6 +24,7 @@ export class LoginRegisComponent implements OnInit {
   // email: string;
   // password: string;
   isLogin = true;
+  isLoginStatus: any;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -33,8 +34,10 @@ export class LoginRegisComponent implements OnInit {
       password: ['', Validators.required,],
       displayName: ['',],
       photoURL: [''],
-      role:['']
+      role: ['']
     });
+    this.isLoginStatus = authService.isLoginStatus;
+    console.log('this.isLoginStatus', this.isLoginStatus)
   }
 
   ngOnInit(): void {
@@ -59,10 +62,6 @@ export class LoginRegisComponent implements OnInit {
           .login(this.data)
           .then(() => {
             this.router.navigate(['/']);
-            setTimeout(() => {
-              window.location.reload(), 2000
-            })
-
           })
           .catch((e: any) => this.errorMessage = e.message);
       }
@@ -74,9 +73,6 @@ export class LoginRegisComponent implements OnInit {
           .then((res: any) => {
             console.log('register', res);
             this.router.navigate(['/']);
-            // setTimeout(() => {
-            //   window.location.reload(), 2000
-            // })
           })
           .catch((e: any) => this.errorMessage = e.message);
       }

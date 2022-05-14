@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user';
+import * as firebase from 'firebase'
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +17,23 @@ export class AuthService {
   userData: any;
   isLogin: boolean = false;
   userUid: any = null;
+  uid : any;
   private basePath = '/users';
+  public isLoginStatus = new BehaviorSubject<String>('');
   constructor(
     public afs: AngularFirestore,
     private db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     public router: Router,
   ) {
+    this.isLoginStatus.next('');
     this.setDataToLocalStorage();
   }
 
   login(credentials: IUser) {
-    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password);
+    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password).then((userCredential) => {
+      this.isLoginStatus.next('true');
+    });
   }
 
   private saveUserData(newUser: IUser): void {
@@ -36,7 +43,10 @@ export class AuthService {
   }
 
   register(newUser: IUser) {
-    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password,).then(() => {
+    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password,).then((userCredential) => {
+      const user = userCredential.user;
+      console.log('register',user)
+
       newUser.displayName = '@' + newUser.displayName;
       newUser.photoURL = 'https://firebasestorage.googleapis.com/v0/b/trickxy-official.appspot.com/o/uploads%2Fuser.png?alt=media&token=07eb84b1-6992-4797-b8dc-3fa81fbe606e';
       this.afAuth.currentUser.then((user) => {
@@ -82,9 +92,9 @@ export class AuthService {
     const isLogin = JSON.parse(localStorage.getItem('isLogin') || '{}');
     return { getUser, isLogin };
   }
-  
-  get currentUid() {
-    console.log('get this.userUid', this.userUid)
-    return this.userUid;
+
+  getCurrentUid() {
+    return this.uid;
   }
+
 }

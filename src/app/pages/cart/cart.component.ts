@@ -38,9 +38,9 @@ export class CartComponent implements OnInit {
         if (user!.uid == element.id) {
           this.newCartById.push(element);
         }
-        else {
-          this.newCartById = [];
-        }
+        // else {
+        //   this.newCartById = [];
+        // }
         console.log('newCartById', this.newCartById)
         return this.newCartById;
       });

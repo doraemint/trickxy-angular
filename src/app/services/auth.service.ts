@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { IUser } from '../models/user';
 import * as firebase from 'firebase'
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,11 @@ export class AuthService {
   userData: any;
   isLogin: boolean = false;
   userUid: any = null;
-  uid : any;
+  uid: any;
   private basePath = '/users';
   public isLoginStatus = new BehaviorSubject<String>('');
+  public dataFirstLogin = new BehaviorSubject<any>('');
+  // readonly dataFirstLogin$ = this.dataFirstLogin.asObservable();
   constructor(
     public afs: AngularFirestore,
     private db: AngularFireDatabase,
@@ -27,13 +29,23 @@ export class AuthService {
     public router: Router,
   ) {
     this.isLoginStatus.next('');
+    this.dataFirstLogin.next('');
     this.setDataToLocalStorage();
   }
 
   login(credentials: IUser) {
-    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password).then((userCredential) => {
+    return this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password).then((credentials) => {
+      let data: any = credentials.user;
       this.isLoginStatus.next('true');
+      console.log('credentials', credentials.user);
+      // localStorage.setItem('user', JSON.stringify(credentials));
+      this.dataFirstLogin.next(data);
     });
+    // .then(() => {
+    //   this.afAuth.authState.subscribe(user => {
+    //     localStorage.setItem('user', JSON.stringify(user));
+    //   });
+    // });
   }
 
   private saveUserData(newUser: IUser): void {
@@ -45,7 +57,7 @@ export class AuthService {
   register(newUser: IUser) {
     return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password,).then((userCredential) => {
       const user = userCredential.user;
-      console.log('register',user)
+      console.log('register', user)
 
       newUser.displayName = '@' + newUser.displayName;
       newUser.photoURL = 'https://firebasestorage.googleapis.com/v0/b/trickxy-official.appspot.com/o/uploads%2Fuser.png?alt=media&token=07eb84b1-6992-4797-b8dc-3fa81fbe606e';
@@ -53,6 +65,9 @@ export class AuthService {
         user!.updateProfile({
           displayName: newUser.displayName,
           photoURL: newUser.photoURL
+        }).then(() => {
+          this.isLoginStatus.next('true');
+          this.dataFirstLogin.next(user);
         });
         this.saveUserData(newUser);
       });
@@ -84,7 +99,6 @@ export class AuthService {
         localStorage.setItem('isLogin', JSON.stringify(this.isLogin));
       }
     });
-    return this.getDataFromLocalStorage()
   }
 
   getDataFromLocalStorage() {
@@ -95,6 +109,15 @@ export class AuthService {
 
   getCurrentUid() {
     return this.uid;
+  }
+
+  // updateUserDataObs(updatedData: any) {
+  //   this.updatedDataUser.next(updatedData);
+  // }
+  
+
+  getUserObs(): Observable<any> {
+    return this.dataFirstLogin.asObservable();
   }
 
 }

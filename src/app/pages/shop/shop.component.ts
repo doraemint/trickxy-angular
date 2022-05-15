@@ -16,6 +16,7 @@ export class ShopComponent implements OnInit {
   cart: IPrepareCart[] = [];
   cartForDb: IPrepareCart;
   cartLocal: any = [];
+  newCartById : any = []
 
   productAdded = {};
   ngOnInit() {
@@ -41,39 +42,35 @@ export class ShopComponent implements OnInit {
     }, error => { console.log('error'), error });
   }
   getCartByUserId() {
-    let newCartById: any = []
     this.afAuth.authState.subscribe(user => {
       this.cart.map(element => {
         if (user!.uid == element.id) {
-          newCartById.push(element);
+          this.newCartById.push(element);
         }
-        else {
-          newCartById = [];
-        }
-        return newCartById;
+        sessionStorage.setItem('cart', JSON.stringify(this.newCartById));
+        return this.newCartById;
       });
-      sessionStorage.setItem('cart', JSON.stringify(this.cart));
     });
   }
 
   addToCart(product: any) {
     let defaultdataProduct = { ...product, quantity: 1 };
     this.cartLocal = JSON.parse(sessionStorage.getItem('cart')!);
-    if (this.cartLocal.length <= 0) {
-      this.cart.push(defaultdataProduct);
-      sessionStorage.setItem('cart', JSON.stringify(this.cart));
+    if (this.cartLocal?.length <= 0 || this.cartLocal === null) {
+      this.newCartById.push(defaultdataProduct);
+      sessionStorage.setItem('cart', JSON.stringify(this.newCartById));
       this.shopService.addCart(defaultdataProduct);
     }
     else {
-      this.cart.forEach((oldDataCart: any) => {
+      this.newCartById.forEach((oldDataCart: any) => {
         if (oldDataCart[defaultdataProduct.id]) {
           oldDataCart[defaultdataProduct.id].quantity++;
-          sessionStorage.setItem('cart', JSON.stringify(this.cart));
+          sessionStorage.setItem('cart', JSON.stringify(this.newCartById));
           this.shopService.updateQuantityCartToDb(oldDataCart[defaultdataProduct.id]);
 
         }
         else {
-          sessionStorage.setItem('cart', JSON.stringify(this.cart));
+          sessionStorage.setItem('cart', JSON.stringify(this.newCartById));
           this.shopService.addCart(defaultdataProduct);
         }
       });

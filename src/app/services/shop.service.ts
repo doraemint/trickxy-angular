@@ -41,12 +41,6 @@ export class ShopService {
   updateBlogById(key: string, value: any): Promise<void> {
     return this.shopRef.update(key, value);
   }
-  deleteBlogById(key: string): Promise<void> {
-    return this.shopRef.remove(key);
-  }
-  deleteAllBlog(): Promise<void> {
-    return this.shopRef.remove();
-  }
 
   getAllCart() {
     this.allCart$ = this.db.list('cartData')
@@ -59,7 +53,6 @@ export class ShopService {
     return this.allCart$;
   }
 
-
   updateCartById(key: string, value: any): Promise<void> {
     return this.cartRef.update(key, value);
   }
@@ -71,6 +64,10 @@ export class ShopService {
     });
   }
 
+  deleteByIdProduct(userId: any, idProduct: any) {
+    this.cartRef = this.db.list('cartData' + '/' + (userId))
+    return this.cartRef.remove(idProduct);
+  }
   updateQuantityCartToDb(cart: any) {
     let idCart: string = cart.id!;
     this.afAuth.authState.subscribe(user => {

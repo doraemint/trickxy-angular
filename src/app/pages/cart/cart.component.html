@@ -9,7 +9,8 @@
     <div *ngFor="let mycart of newData">
         <div class="cart-item d-md-flex justify-content-between" *ngIf="!mycart[0]">
             <span class="remove-item">
-                <i class="fa fa-times"></i>
+                <i class="fa fa-times" (click)="deleteProductById(mycart.id)">
+                </i>
             </span>
             <div class="px-3 my-3">
                 <!-- <a class="cart-item-product" href="#"> -->

@@ -19,7 +19,6 @@ export class CartComponent implements OnInit {
   subTotalPrice: number = 0;
   totalPrice: number = 0;
   shippingPrice: number = 50;
-  
   ngOnInit(): void {
     this.getCartFromDb();
   }
@@ -63,5 +62,19 @@ export class CartComponent implements OnInit {
       }
     }
     this.totalPrice = this.subTotalPrice + this.shippingPrice;
+  }
+
+  deleteProductById(idProduct: any) {
+    this.shopService.deleteByIdProduct(this.newData[0], idProduct).finally(() => {
+      this.reloadCurrentRoute();
+    });
+  }
+  
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+      console.log(currentUrl);
+    });
   }
 }

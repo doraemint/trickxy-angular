@@ -20,7 +20,7 @@ export class SpotlightComponent implements OnInit {
         },
         {
           detail: 'ลิปเซนทัล',
-          img: 'https://backend.central.co.th/media/catalog/product/c/d/cds84013309-1.jpg'
+          img: '../../../assets/lip-spotlight.jpg'
         },
       ]
     },

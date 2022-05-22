@@ -77,4 +77,8 @@ export class CartComponent implements OnInit {
       console.log(currentUrl);
     });
   }
+
+  goToCheckout(){
+    this.router.navigate(['/checkout'])
+  }
 }

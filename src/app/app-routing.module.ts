@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlogComponent } from './pages/blog/blog.component';
 import { CreateEditBlogComponent } from './pages/blog/create-edit/create-edit.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CheckStatusOrderComponent } from './pages/check-status-order/check-status-order.component';
 import { CheckoutConfirmComponent } from './pages/checkout-confirm/checkout-confirm.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginRegisComponent } from './pages/login-regis/login-regis.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'my-profile', component: MyProfileComponent },
   { path: 'checkout', component: CheckoutConfirmComponent },
+  { path: 'status-order', component: CheckStatusOrderComponent },
   { path: '**', redirectTo: '/home' }
 ];
 

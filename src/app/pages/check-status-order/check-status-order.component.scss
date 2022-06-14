@@ -1,0 +1,13 @@
+// :host tbody{
+//     border: 1px !important;
+//     border-color: rgb(179, 179, 179) !important;
+// }
+// :host .table-hover{
+//     // border: 2px !important;
+//     // border-color: #ec8f8f !important;
+//     color: #ec8f8f !important;
+// }
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: rgb(255, 201, 210);
+    cursor: pointer;
+  }

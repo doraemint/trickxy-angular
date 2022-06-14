@@ -140,7 +140,8 @@ export class CheckoutConfirmComponent implements OnInit {
       let orderData = {
         address : this.shippingData,
         detailOrder: this.cartData,
-        totalPrice : this.totalPrice
+        totalPrice : this.totalPrice,
+        status : 'wating for check'
       }
       this.checkoutService.saveOrder(orderData).then((res) => {
         alert("Purchase of order successfully! Please Check in 'Status of order' menu.")

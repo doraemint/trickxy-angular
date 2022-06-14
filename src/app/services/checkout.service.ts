@@ -53,4 +53,8 @@ export class CheckoutService {
     this.orderRef = this.db.list('orders' + '/' + this.userData$.uid);
     return this.orderRef.push(orderData);
   }
+
+  getOrderById(){
+    return this.db.object('orders' + '/' + this.userData$.uid);
+  }
 }

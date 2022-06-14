@@ -38,9 +38,6 @@ export class ShopService {
     console.log('blogData', shopData)
     return this.shopRef.push(shopData);
   }
-  updateBlogById(key: string, value: any): Promise<void> {
-    return this.shopRef.update(key, value);
-  }
 
   getAllCart() {
     this.allCart$ = this.db.list('cartData')
@@ -51,10 +48,6 @@ export class ShopService {
         )
       ));
     return this.allCart$;
-  }
-
-  updateCartById(key: string, value: any): Promise<void> {
-    return this.cartRef.update(key, value);
   }
 
   addCartToDb(cart: IPrepareCart) {

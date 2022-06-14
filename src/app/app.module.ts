@@ -25,6 +25,7 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { CreateEditBlogComponent } from './pages/blog/create-edit/create-edit.component';
 import { CreateEditShopComponent } from './pages/shop/create-edit-shop/create-edit-shop.component';
 import { CheckoutConfirmComponent } from './pages/checkout-confirm/checkout-confirm.component';
+import { CheckStatusOrderComponent } from './pages/check-status-order/check-status-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { CheckoutConfirmComponent } from './pages/checkout-confirm/checkout-conf
     MyProfileComponent,
     CreateEditBlogComponent,
     CreateEditShopComponent,
-    CheckoutConfirmComponent
+    CheckoutConfirmComponent,
+    CheckStatusOrderComponent
   ],
   imports: [
     BrowserModule,
